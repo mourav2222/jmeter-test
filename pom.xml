@@ -48,6 +48,9 @@
                     </execution>
                 </executions>
                 <configuration>
+                         
+                    <testResultsTimestamp>false</testResultsTimestamp>                         
+                         
                     <customPropertiesFiles>
                         <file>./src/test/jmeter/URLs.txt</file>
                         <file>./src/test/jmeter/loadtest.properties</file>
