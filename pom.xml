@@ -68,10 +68,11 @@
                     </propertiesUser>
 
                     <jMeterProcessJVMSettings>
+                        <xms>4096</xms>
+                        <xmx>4096</xmx>
                         <arguments>
                             <argument>-XX:MaxMetaspaceSize=256m</argument>
-                            <argument>-Xmx2G</argument>
-                            <argument>-Xms2G</argument>
+                            <argument>-XX:+UseG1GC</argument>
                         </arguments>
                      </jMeterProcessJVMSettings>
 
