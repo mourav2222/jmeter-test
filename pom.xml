@@ -12,7 +12,7 @@
 
     <properties>
         <test.threads>5</test.threads>
-        <performancetest.script>JmeterPerfTest</performancetest.script>
+        <performancetest.script>JmeterPerfTest.jmx</performancetest.script>
     </properties>
 
     <build>
@@ -36,10 +36,6 @@
                             <goal>jmeter</goal>
                         </goals>
 
-                        <configuration>
-                            <generateReports>true</generateReports>
-                        </configuration>
-
                     </execution>
                     <!-- Fail build on errors in test -->
                     <execution>
@@ -52,14 +48,16 @@
                 <configuration>
 
                     <testFilesIncluded>
-                       <jMeterTestFile>${performancetest.script}.jmx</jMeterTestFile>
+                       <jMeterTestFile>${performancetest.script}</jMeterTestFile>
                     </testFilesIncluded>
 
-                    <testResultsTimestamp>false</testResultsTimestamp>
+                   <testResultsTimestamp>false</testResultsTimestamp>
                     <overrideRootLogLevel>DEBUG</overrideRootLogLevel>
                     <suppressJMeterOutput>false</suppressJMeterOutput>
                     <ignoreResultFailures>true</ignoreResultFailures>
                     <guiTestFile>${project.basedir}/src/test/jmeter/${performancetest.script}</guiTestFile>
+
+                    <generateReports>true</generateReports>
 
                     <customPropertiesFiles>
                         <file>./src/test/jmeter/URLs.txt</file>
