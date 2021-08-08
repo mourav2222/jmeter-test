@@ -5,12 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>JmeterMavenDemo</artifactId>
+    <artifactId>JmeterMavenPerfTest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <test.threads>5</test.threads>
     </properties>
 
     <build>
@@ -48,13 +49,38 @@
                     </execution>
                 </executions>
                 <configuration>
-                         
-                    <testResultsTimestamp>false</testResultsTimestamp>                         
-                         
+
+                    <testFilesIncluded>
+                        <jMeterTestFile>MavenDemo.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+
+                    <testResultsTimestamp>false</testResultsTimestamp>
                     <customPropertiesFiles>
                         <file>./src/test/jmeter/URLs.txt</file>
-                        <file>./src/test/jmeter/loadtest.properties</file>
                     </customPropertiesFiles>
+
+                    <propertiesJMeter>
+                        <httpclient.reset_state_on_thread_group_iteration>false</httpclient.reset_state_on_thread_group_iteration>
+                    </propertiesJMeter>
+
+                    <propertiesUser>
+                        <THREADS>${test.threads}</THREADS>
+                    </propertiesUser>
+
+                    <jMeterProcessJVMSettings>
+                        <arguments>
+                            <argument>-XX:MaxMetaspaceSize=256m</argument>
+                            <argument>-Xmx2G</argument>
+                            <argument>-Xms2G</argument>
+                        </arguments>
+                     </jMeterProcessJVMSettings>
+
+                    <propertiesReportGenerator>
+                        <jmeter.reportgenerator.overall_granularity>1000</jmeter.reportgenerator.overall_granularity>
+                        <jmeter.reportgenerator.graph.responseTimeDistribution.property.set_granularity>1000</jmeter.reportgenerator.graph.responseTimeDistribution.property.set_granularity>
+                        <jmeter.reportgenerator.report_title>MKM2-Apache JMeter Dashboard</jmeter.reportgenerator.report_title>
+                    </propertiesReportGenerator>
+
                 </configuration>
             </plugin>
         </plugins>
