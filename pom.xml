@@ -51,8 +51,7 @@
                 <configuration>
 
                     <testFilesIncluded>
-                        <jMeterTestFile>MavenDemo.jmx</jMeterTestFile>
-                        <jMeterTestFile>JmeterPerfTest.jmx</jMeterTestFile>
+                       <jMeterTestFile>JmeterPerfTest.jmx</jMeterTestFile>
                     </testFilesIncluded>
 
                     <testResultsTimestamp>false</testResultsTimestamp>
