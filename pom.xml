@@ -4,10 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>JmeterMavenPerfTest</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <groupId>com.cenit.perftest</groupId>
+    <artifactId>jmeter-perftest</artifactId>
+    <version>0.1.0</version>
     <name>jmeter-perftest</name>
     <description>Apache.JMeter test for loadtestweb on ESM servers</description>
 
