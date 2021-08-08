@@ -8,10 +8,12 @@
     <artifactId>JmeterMavenPerfTest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>jmeter-perftest</name>
+    <description>Apache.JMeter test for loadtestweb on ESM servers</description>
+
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
         <test.threads>5</test.threads>
+        <performancetest.script>JmeterPerfTest</performancetest.script>
     </properties>
 
     <build>
@@ -51,16 +53,24 @@
                 <configuration>
 
                     <testFilesIncluded>
-                       <jMeterTestFile>JmeterPerfTest.jmx</jMeterTestFile>
+                       <jMeterTestFile>${performancetest.script}.jmx</jMeterTestFile>
                     </testFilesIncluded>
 
                     <testResultsTimestamp>false</testResultsTimestamp>
+                    <overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+                    <suppressJMeterOutput>false</suppressJMeterOutput>
+                    <ignoreResultFailures>true</ignoreResultFailures>
+                    <guiTestFile>${project.basedir}/src/test/jmeter/${performancetest.script}</guiTestFile>
+
                     <customPropertiesFiles>
                         <file>./src/test/jmeter/URLs.txt</file>
                     </customPropertiesFiles>
 
                     <propertiesJMeter>
                         <httpclient.reset_state_on_thread_group_iteration>false</httpclient.reset_state_on_thread_group_iteration>
+
+                        <jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
+                        <jmeter.save.saveservice.subresults>true</jmeter.save.saveservice.subresults>
                     </propertiesJMeter>
 
                     <propertiesUser>
