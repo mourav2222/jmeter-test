@@ -11,8 +11,17 @@
     <description>Apache.JMeter test for loadtestweb on ESM servers</description>
 
     <properties>
+        <!--
         <test.threads>5</test.threads>
         <performancetest.script>JmeterPerfTest.jmx</performancetest.script>
+        -->
+
+        <test.smserver>splap001di</test.smserver>
+        <test.threadusers>20</test.threadusers>
+        <test.rampup>5</test.rampup>
+        <test.loops>1</test.loops>
+
+        <performancetest.script>ESM_Phoenix_Testplan.jmx</performancetest.script>
     </properties>
 
     <build>
@@ -51,6 +60,23 @@
                        <jMeterTestFile>${performancetest.script}</jMeterTestFile>
                     </testFilesIncluded>
 
+                    <jmeterExtensions>
+                        <!-- Custom Thread Groups
+                        https://jmeter-plugins.org/?search=jpgc-casutg
+			            http://repo.maven.apache.org/maven2/kg/apc/jmeter-plugins-casutg/
+			            -->
+                        <artifact>kg.apc:jmeter-plugins-casutg:2.6</artifact>
+
+                        <artifact>kg.apc:jmeter-plugins-perfmon:2.1</artifact>
+
+                        <!-- Parallel Controller & Sampler
+                        https://jmeter-plugins.org/?search=parallel
+                        https://github.com/Blazemeter/jmeter-bzm-plugins/blob/master/parallel/Parallel.md
+                        https://www.blazemeter.com/blog/how-to-use-the-parallel-controller-in-jmeter
+                        -->
+                        <artifact>com.blazemeter:jmeter-parallel:0.9</artifact>
+                    </jmeterExtensions>
+
                    <testResultsTimestamp>false</testResultsTimestamp>
                     <overrideRootLogLevel>DEBUG</overrideRootLogLevel>
                     <suppressJMeterOutput>false</suppressJMeterOutput>
@@ -66,12 +92,19 @@
                     <propertiesJMeter>
                         <httpclient.reset_state_on_thread_group_iteration>false</httpclient.reset_state_on_thread_group_iteration>
 
+                        <https.default.protocol>TLSv1.2</https.default.protocol>
+
                         <jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
                         <jmeter.save.saveservice.subresults>true</jmeter.save.saveservice.subresults>
                     </propertiesJMeter>
 
                     <propertiesUser>
-                        <THREADS>${test.threads}</THREADS>
+
+                        <SMSERVER>${test.smserver}</SMSERVER>
+                        <THREADUSERS>${test.threadusers}</THREADUSERS>
+                        <RAMPUP>${test.rampup}</RAMPUP>
+                        <LOOPS>${test.loops}</LOOPS>
+
                     </propertiesUser>
 
                     <jMeterProcessJVMSettings>
@@ -80,6 +113,10 @@
                         <arguments>
                             <argument>-XX:MaxMetaspaceSize=256m</argument>
                             <argument>-XX:+UseG1GC</argument>
+
+                            <argument>-Duser.language=en</argument>
+                            <argument>-Duser.region=EN</argument>
+
                         </arguments>
                      </jMeterProcessJVMSettings>
 
@@ -94,4 +131,20 @@
         </plugins>
     </build>
 
+    <developers>
+        <developer>
+            <id>m.muraviev</id>
+            <name>Muraviev Michael</name>
+            <url>https://github.com/mourav2222</url>
+        </developer>
+    </developers>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- https://mvnrepository.com/artifact/kg.apc/jmeter-plugins-graphs-basic -->
+
+
+        </dependencies>
+    </dependencyManagement>
 </project>

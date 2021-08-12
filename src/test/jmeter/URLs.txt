@@ -1,5 +1,4 @@
 P_URL
-example.com
-reqres.in
 google.com
 bing.com
+wikipedia.de
