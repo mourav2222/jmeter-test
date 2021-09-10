@@ -77,6 +77,18 @@
                         <artifact>com.blazemeter:jmeter-parallel:0.9</artifact>
                     </jmeterExtensions>
 
+                    <testPlanLibraries>
+                        <!-- JMeter Plugins Common Classes: Various utility classes to ease development of plugins
+			            http://repo.maven.apache.org/maven2/kg/apc/jmeter-plugins-cmn-jmeter/
+			            -->
+                        <artifact>kg.apc:jmeter-plugins-cmn-jmeter:0.6</artifact>
+                    </testPlanLibraries>
+
+                    <downloadExtensionDependencies>true</downloadExtensionDependencies>
+                    <downloadLibraryDependencies>true</downloadLibraryDependencies>
+                    <downloadOptionalDependencies>false</downloadOptionalDependencies>
+                    <downloadJMeterDependencies>true</downloadJMeterDependencies>
+
                    <testResultsTimestamp>false</testResultsTimestamp>
                     <overrideRootLogLevel>DEBUG</overrideRootLogLevel>
                     <suppressJMeterOutput>false</suppressJMeterOutput>
@@ -86,12 +98,13 @@
                     <generateReports>true</generateReports>
 
                     <customPropertiesFiles>
+                        <!--
                         <file>./src/test/jmeter/URLs.txt</file>
+                        -->
                     </customPropertiesFiles>
 
                     <propertiesJMeter>
                         <httpclient.reset_state_on_thread_group_iteration>false</httpclient.reset_state_on_thread_group_iteration>
-
                         <https.default.protocol>TLSv1.2</https.default.protocol>
 
                         <jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
@@ -121,9 +134,17 @@
                      </jMeterProcessJVMSettings>
 
                     <propertiesReportGenerator>
+
+                        <jmeter.reportgenerator.report_title>ESM Load/Performance Test</jmeter.reportgenerator.report_title>
+                        <jmeter.reportgenerator.date_format>dd-MM-yyyy HH:mm:ss</jmeter.reportgenerator.date_format>
                         <jmeter.reportgenerator.overall_granularity>1000</jmeter.reportgenerator.overall_granularity>
+                        <jmeter.reportgenerator.exporter.html.filters_only_sample_series>true</jmeter.reportgenerator.exporter.html.filters_only_sample_series>
+                        <jmeter.save.saveservice.output_format>csv</jmeter.save.saveservice.output_format>
+                        <jmeter.save.saveservice.assertion_results_failure_message>true</jmeter.save.saveservice.assertion_results_failure_message>
                         <jmeter.reportgenerator.graph.responseTimeDistribution.property.set_granularity>1000</jmeter.reportgenerator.graph.responseTimeDistribution.property.set_granularity>
-                        <jmeter.reportgenerator.report_title>MKM2-Apache JMeter Dashboard</jmeter.reportgenerator.report_title>
+
+                        <jmeter.reportgenerator.exporter.html.property.template_dir>${project.basedir}/report-template</jmeter.reportgenerator.exporter.html.property.template_dir>
+
                     </propertiesReportGenerator>
 
                 </configuration>
